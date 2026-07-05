@@ -1,0 +1,13 @@
+.services-grid{ display:grid; grid-template-columns:repeat(3,1fr); gap:26px; }
+@media (max-width:900px){ .services-grid{ grid-template-columns:1fr 1fr; } }
+@media (max-width:600px){ .services-grid{ grid-template-columns:1fr; } }
+
+.process-timeline{ list-style:none; margin:0; padding:0; display:grid; gap:0; }
+.process-timeline li{
+  display:grid; grid-template-columns:70px 1fr; gap:26px;
+  padding:30px 0; border-bottom:1px solid var(--paper-line);
+}
+.process-timeline li:last-child{ border-bottom:none; }
+.step-index{ font-family:'Bodoni Moda',serif; font-size:2rem; color:var(--emerald); }
+.process-timeline h3{ font-size:1.3rem; margin-bottom:8px; }
+.process-timeline p{ color:var(--muted-on-light); max-width:520px; }

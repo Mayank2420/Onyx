@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Admin — Onyx PC Studio</title>
+<meta name="robots" content="noindex, nofollow">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Jost:wght@500;600;700&family=Bodoni+Moda:ital,opsz,wght@0,6..96,400;0,6..96,500;0,6..96,600;1,6..96,400;1,6..96,500&family=Work+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/css/style.css">
+<link rel="stylesheet" href="assets/css/admin.css">
+</head>
+<body class="admin-body">
+
+<!-- ========================= LOGIN SCREEN ========================= -->
+<div id="loginScreen" class="login-screen">
+  <form id="loginForm" class="login-card">
+    <a href="index.html" class="brand" style="margin-bottom:8px;">Onyx <small>PC Studio</small></a>
+    <p class="eyebrow" style="margin-bottom:26px;">Admin access</p>
+    <label>Email<input type="email" name="email" required autocomplete="username"></label>
+    <label>Password<input type="password" name="password" required autocomplete="current-password"></label>
+    <button type="submit" class="btn btn-primary" style="width:100%;justify-content:center;">Sign In</button>
+    <p id="loginStatus" class="form-status"></p>
+  </form>
+</div>
+
+<!-- ========================= ADMIN DASHBOARD ========================= -->
+<div id="adminDashboard" class="admin-dashboard" hidden>
+
+  <header class="admin-header">
+    <a href="index.html" class="brand">Onyx <small>PC Studio</small></a>
+    <div class="admin-header-right">
+      <span id="adminEmail" class="admin-email"></span>
+      <button id="logoutBtn" class="btn btn-outline-dark">Sign Out</button>
+    </div>
+  </header>
+
+  <div class="admin-stats">
+    <div class="stat-card"><span>Total Products</span><strong id="statTotal">0</strong></div>
+    <div class="stat-card"><span>Low Stock</span><strong id="statLow">0</strong></div>
+    <div class="stat-card"><span>Out of Stock</span><strong id="statOut">0</strong></div>
+    <div class="stat-card"><span>New Enquiries</span><strong id="statEnquiries">0</strong></div>
+  </div>
+
+  <nav class="admin-tabs">
+    <button class="admin-tab active" data-tab="inventory">Inventory</button>
+    <button class="admin-tab" data-tab="add">Add Product</button>
+    <button class="admin-tab" data-tab="bulk">Bulk Upload (Excel)</button>
+    <button class="admin-tab" data-tab="enquiries">Enquiries</button>
+  </nav>
+
+  <!-- ---------- INVENTORY TAB ---------- -->
+  <section class="admin-panel" id="tab-inventory">
+    <div class="admin-toolbar">
+      <input type="search" id="invSearch" class="search-input" placeholder="Search inventory…">
+      <select id="invCategoryFilter" class="search-input">
+        <option value="">All Categories</option>
+        <option value="gaming-pcs">Gaming PCs</option>
+        <option value="laptops">Laptops</option>
+        <option value="components-new">Components — New</option>
+        <option value="components-used">Components — Second-Hand</option>
+        <option value="storage">Storage</option>
+        <option value="ups">UPS</option>
+      </select>
+    </div>
+    <div class="table-wrap">
+      <table class="admin-table">
+        <thead>
+          <tr>
+            <th>Name</th><th>Category</th><th>Price (₹)</th><th>Qty</th><th>Stock</th><th>Actions</th>
+          </tr>
+        </thead>
+        <tbody id="inventoryBody">
+          <tr><td colspan="6" class="table-empty">Loading…</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <!-- ---------- ADD PRODUCT TAB ---------- -->
+  <section class="admin-panel" id="tab-add" hidden>
+    <form id="addProductForm" class="admin-form">
+      <div class="form-row">
+        <label>Product Name<input type="text" name="name" required></label>
+        <label>Category
+          <select name="category" required>
+            <option value="gaming-pcs">Gaming PC</option>
+            <option value="laptops">Laptop</option>
+            <option value="components-new">Component — New</option>
+            <option value="components-used">Component — Second-Hand</option>
+            <option value="storage">Storage</option>
+            <option value="ups">UPS</option>
+          </select>
+        </label>
+      </div>
+      <div class="form-row">
+        <label>Price (₹)<input type="number" name="price" min="0" required></label>
+        <label>Quantity in Stock<input type="number" name="quantity" min="0" required></label>
+      </div>
+      <label>Stock Status
+        <select name="stock">
+          <option value="In Stock">In Stock</option>
+          <option value="Low Stock">Low Stock</option>
+          <option value="Out of Stock">Out of Stock</option>
+        </select>
+      </label>
+      <label>Description<textarea name="description" rows="3"></textarea></label>
+      <label>Image URL (optional)<input type="url" name="imageUrl" placeholder="https://…"></label>
+      <label>Or upload an image<input type="file" name="imageFile" accept="image/*"></label>
+      <button type="submit" class="btn btn-primary">Add Product</button>
+      <p id="addStatus" class="form-status"></p>
+    </form>
+  </section>
+
+  <!-- ---------- BULK UPLOAD TAB ---------- -->
+  <section class="admin-panel" id="tab-bulk" hidden>
+    <div class="bulk-instructions">
+      <h3>Excel format expected</h3>
+      <p>Columns (any order, case-insensitive): <strong>Name, Category, Price, Quantity, Stock, Description, Image URL</strong>.
+      Category should be one of: Gaming PC, Laptop, Component New, Component Used, Storage, UPS.</p>
+      <input type="file" id="bulkFile" accept=".xlsx,.xls,.csv">
+    </div>
+    <div id="bulkPreviewWrap" hidden>
+      <div class="table-wrap">
+        <table class="admin-table">
+          <thead>
+            <tr><th>Name</th><th>Category</th><th>Price</th><th>Qty</th><th>Stock</th><th>Description</th></tr>
+          </thead>
+          <tbody id="bulkPreviewBody"></tbody>
+        </table>
+      </div>
+      <button id="bulkConfirmBtn" class="btn btn-primary">Confirm &amp; Upload All</button>
+      <p id="bulkStatus" class="form-status"></p>
+    </div>
+  </section>
+
+  <!-- ---------- ENQUIRIES TAB ---------- -->
+  <section class="admin-panel" id="tab-enquiries" hidden>
+    <div class="table-wrap">
+      <table class="admin-table">
+        <thead><tr><th>Name</th><th>Phone</th><th>Interest</th><th>Message</th><th>Status</th></tr></thead>
+        <tbody id="enquiriesBody"><tr><td colspan="5" class="table-empty">Loading…</td></tr></tbody>
+      </table>
+    </div>
+  </section>
+
+</div>
+
+<script src="https://www.gstatic.com/firebasejs/10.13.0/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.13.0/firebase-firestore-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.13.0/firebase-auth-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.13.0/firebase-storage-compat.js"></script>
+<script src="assets/js/firebase-config.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/xlsx@0.18.5/dist/xlsx.full.min.js"></script>
+<script src="assets/js/admin.js"></script>
+</body>
+</html>

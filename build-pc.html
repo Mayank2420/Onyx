@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Build a PC — Onyx PC Studio</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Jost:wght@500;600;700&family=Bodoni+Moda:ital,opsz,wght@0,6..96,400;0,6..96,500;0,6..96,600;1,6..96,400;1,6..96,500&family=Work+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/css/style.css">
+<link rel="stylesheet" href="assets/css/build-pc.css">
+</head>
+<body>
+
+<nav class="site-nav">
+  <div class="container">
+    <a href="index.html" class="brand">Onyx <small>PC Studio</small></a>
+    <ul class="nav-links">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="products.html">Products</a></li>
+      <li><a href="build-pc.html" class="active">Build a PC</a></li>
+      <li><a href="services.html">Services</a></li>
+      <li><a href="about.html">About &amp; Contact</a></li>
+    </ul>
+    <a href="about.html#contact" class="nav-cta">Visit Store</a>
+    <button class="nav-toggle" aria-label="Menu">☰</button>
+  </div>
+</nav>
+
+<header class="page-hero">
+  <div class="container">
+    <p class="eyebrow">Configure your own</p>
+    <h1>Build a PC</h1>
+    <p class="page-hero-sub">Pick a part for each slot from live stock. We'll confirm compatibility and finish the build in-store.</p>
+  </div>
+</header>
+
+<section class="section section-paper builder-section">
+  <div class="container builder-grid">
+
+    <div class="builder-slots" id="builderSlots">
+      <!-- Populated by build-pc.js: one slot per category -->
+    </div>
+
+    <aside class="builder-summary">
+      <div class="summary-card">
+        <p class="eyebrow">Your configuration</p>
+        <h3>Running Total</h3>
+        <ul id="summaryList" class="summary-list">
+          <li class="summary-empty">No parts selected yet.</li>
+        </ul>
+        <div class="summary-total">
+          <span>Estimated Total</span>
+          <strong id="summaryTotal">₹0</strong>
+        </div>
+        <button id="quoteBtn" class="btn btn-primary" style="width:100%;justify-content:center;" disabled>Send via WhatsApp</button>
+        <p class="summary-note">Final price confirmed in-store after compatibility check &amp; assembly.</p>
+      </div>
+    </aside>
+
+  </div>
+</section>
+
+<footer class="site-footer">
+  <div class="container">
+    <div class="footer-bottom">
+      <span>© 2026 Onyx PC Studio. All rights reserved.</span>
+      <span>Naza Market, Hazratganj, Lucknow</span>
+    </div>
+  </div>
+</footer>
+
+<script src="https://www.gstatic.com/firebasejs/10.13.0/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.13.0/firebase-firestore-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.13.0/firebase-auth-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.13.0/firebase-storage-compat.js"></script>
+<script src="assets/js/firebase-config.js"></script>
+<script src="assets/js/build-pc.js"></script>
+<script src="assets/js/main.js"></script>
+</body>
+</html>

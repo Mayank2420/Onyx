@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Products — Onyx PC Studio</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Jost:wght@500;600;700&family=Bodoni+Moda:ital,opsz,wght@0,6..96,400;0,6..96,500;0,6..96,600;1,6..96,400;1,6..96,500&family=Work+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/css/style.css">
+<link rel="stylesheet" href="assets/css/products.css">
+</head>
+<body>
+
+<nav class="site-nav">
+  <div class="container">
+    <a href="index.html" class="brand">Onyx <small>PC Studio</small></a>
+    <ul class="nav-links">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="products.html" class="active">Products</a></li>
+      <li><a href="build-pc.html">Build a PC</a></li>
+      <li><a href="services.html">Services</a></li>
+      <li><a href="about.html">About &amp; Contact</a></li>
+    </ul>
+    <a href="about.html#contact" class="nav-cta">Visit Store</a>
+    <button class="nav-toggle" aria-label="Menu">☰</button>
+  </div>
+</nav>
+
+<header class="page-hero">
+  <div class="container">
+    <p class="eyebrow">Full inventory</p>
+    <h1>Products</h1>
+    <p class="page-hero-sub">Every listing here is live from our inventory system — stock and pricing update in real time.</p>
+  </div>
+</header>
+
+<section class="section section-paper products-section">
+  <div class="container">
+
+    <div class="products-toolbar">
+      <div class="filter-tabs" id="filterTabs">
+        <button class="filter-tab active" data-filter="all">All</button>
+        <button class="filter-tab" data-filter="gaming-pcs">Gaming PCs</button>
+        <button class="filter-tab" data-filter="laptops">Laptops</button>
+        <button class="filter-tab" data-filter="components-new">Components — New</button>
+        <button class="filter-tab" data-filter="components-used">Components — Second-Hand</button>
+        <button class="filter-tab" data-filter="storage">Storage</button>
+        <button class="filter-tab" data-filter="ups">UPS</button>
+      </div>
+      <input type="search" id="searchInput" class="search-input" placeholder="Search products…">
+    </div>
+
+    <div id="productsGrid" class="products-grid">
+      <!-- Populated by products.js -->
+    </div>
+
+    <div id="emptyState" class="empty-state" hidden>
+      <p class="eyebrow">Nothing here yet</p>
+      <h3>No products match this view.</h3>
+      <p>Try a different category, or check back soon — new stock is added regularly.</p>
+    </div>
+
+    <div id="loadingState" class="loading-state">
+      <p>Loading inventory…</p>
+    </div>
+
+  </div>
+</section>
+
+<footer class="site-footer">
+  <div class="container">
+    <div class="footer-bottom">
+      <span>© 2026 Onyx PC Studio. All rights reserved.</span>
+      <span>Naza Market, Hazratganj, Lucknow</span>
+    </div>
+  </div>
+</footer>
+
+<!-- Firebase (compat SDK) -->
+<script src="https://www.gstatic.com/firebasejs/10.13.0/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.13.0/firebase-firestore-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.13.0/firebase-auth-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.13.0/firebase-storage-compat.js"></script>
+<script src="assets/js/firebase-config.js"></script>
+<script src="assets/js/products.js"></script>
+<script src="assets/js/main.js"></script>
+</body>
+</html>
